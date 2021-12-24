@@ -16,6 +16,7 @@ function prepareVariables($page, $action, $id)
         case 'index':
             break;
 
+
         case 'login':
             $login = $_POST['login'];
             $pass = $_POST['pass'];
@@ -46,6 +47,7 @@ function prepareVariables($page, $action, $id)
             $params['products'] = getDiet();
             $params['sumnvpdiet'] = calcDiet();
             $params['foods'] = getFoods();
+
             break;
 
 //        case 'catalog':

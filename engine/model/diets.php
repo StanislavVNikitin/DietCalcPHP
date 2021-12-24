@@ -107,7 +107,6 @@ function saveDiet()
 
 function doDietAction(&$params, $action, $id)
 {
-    $params['name'] = '';
     $params['count'] = '10';
     $params['button'] = 'Добавить';
     $params['action'] = 'add';
