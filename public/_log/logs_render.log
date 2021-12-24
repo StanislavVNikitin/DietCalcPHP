@@ -1,0 +1,48 @@
+### 26.01.2021 21:25:25
+Array
+(
+    [count] => 2
+    [name] => Alex
+)
+
+
+
+### 26.01.2021 21:25:25
+Array
+(
+    [count] => 2
+    [catalog] => Array
+        (
+            [0] => Array
+                (
+                    [name] => Ïèööà
+                    [price] => 24
+                )
+
+            [1] => Array
+                (
+                    [name] => ×àé
+                    [price] => 1
+                )
+
+            [2] => Array
+                (
+                    [name] => ßáëîêî
+                    [price] => 12
+                )
+
+        )
+
+)
+
+
+
+### 26.01.2021 21:25:28
+Array
+(
+    [count] => 2
+    [name] => Alex
+)
+
+
+
