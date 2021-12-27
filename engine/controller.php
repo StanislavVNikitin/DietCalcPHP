@@ -4,18 +4,18 @@
 //для подстановки их в соотвествующий шаблон
 function prepareVariables($page, $action, $id)
 {
-
+    session_start();
     $params = [];
-
-    if (isset($_SESSION['login'])){
-        $params['name'] = get_user();
-    }
     $params['auth'] = isAuth();
+    if (isset($_SESSION['auth']['login'])){
+        $params['name'] = get_user();
+    } else {
+        sessionCookeGuestStart();
+    }
 
     switch ($page) {
         case 'index':
             break;
-
 
         case 'login':
             $login = $_POST['login'];
@@ -24,9 +24,9 @@ function prepareVariables($page, $action, $id)
             if (auth($login, $pass)) {
                 if (isset($_POST['save'])) {
                     $hash = uniqid(rand(), true);
-                    $id = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_SESSION['id'])));
+                    $id = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_SESSION['auth']['id'])));
                     $sql = "UPDATE users SET hash = '{$hash}' WHERE id = {$id}";
-                    $result = mysqli_query(getDb(), $sql);
+                    executeSql($sql);
                     setcookie("hash", $hash, time() + 3600, "/");
                 }
                 header("Location: /");
@@ -39,6 +39,7 @@ function prepareVariables($page, $action, $id)
             setcookie("hash", "", time()-1, "/");
             setcookie("dietcalc", "", time()-1, "/");
             session_destroy();
+            $_SESSION['auth'] = "";
             header("Location: /");
             die();
 
@@ -47,7 +48,6 @@ function prepareVariables($page, $action, $id)
             $params['products'] = getDiet();
             $params['sumnvpdiet'] = calcDiet();
             $params['foods'] = getFoods();
-
             break;
 
 //        case 'catalog':

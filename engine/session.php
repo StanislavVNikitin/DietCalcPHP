@@ -1,9 +1,8 @@
 <?php
 
-function sessionCookeGusetStart()
+function sessionCookeGuestStart()
 {
     //Функция запускает сессию и копирует id сессии в куки
-    session_start();
 
     if (!isset($_COOKIE['dietcalc'])) {
         if (!isset($_SESSION['guestid'])) {

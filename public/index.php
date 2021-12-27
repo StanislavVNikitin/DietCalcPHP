@@ -4,7 +4,7 @@
 include "../config/config.php";
 
 //Запускаем сессию и куки через фукнцияю sessionCookeGusetStart()
-sessionCookeGusetStart();
+
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -37,3 +37,4 @@ $params = prepareVariables($page, $action, $id);
 
 //_log($params, "render");
 echo render($page, $params);
+

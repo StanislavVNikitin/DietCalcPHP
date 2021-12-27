@@ -14,7 +14,7 @@
         <input class="form-control input-sm" type="text" name="login" placeholder="Логин">
         <input class="form-control input-sm" type="password" name="pass" placeholder="Пароль">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <input class="form-check-input" type="checkbox" role="switch" name="save" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Запомнить?	&nbsp;</label>
             </div>
         <button class="btn btn-outline-success btn-sm" type="submit">Вход</button>
