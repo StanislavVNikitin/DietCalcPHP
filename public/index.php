@@ -37,4 +37,3 @@ $params = prepareVariables($page, $action, $id);
 
 //_log($params, "render");
 echo render($page, $params);
-

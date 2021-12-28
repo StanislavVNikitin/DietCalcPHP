@@ -9,7 +9,7 @@ function sessionCookeGuestStart()
             $_SESSION['guestid'] = uniqid(rand(), true);
             $_SESSION['guest'] = true;
         }
-        setcookie("dietcalc", $_SESSION['guestid'], time() + 3600, "/");
+        setcookie("dietcalc", $_SESSION['guestid'], time() + LIFE_TIME_COOKIE, "/");
     } else {
         $_SESSION['guestid'] = $_COOKIE['dietcalc'];
     }

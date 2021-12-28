@@ -17,6 +17,19 @@ function prepareVariables($page, $action, $id)
         case 'index':
             break;
 
+        case 'api':
+
+            if ($action == 'addtodiet') {
+                echo json_encode();
+                die();
+            }
+
+            if ($action == 'delete') {
+                echo json_encode();
+                die();
+            }
+            break;
+
         case 'login':
             $login = $_POST['login'];
             $pass = $_POST['pass'];
@@ -27,9 +40,9 @@ function prepareVariables($page, $action, $id)
                     $id = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_SESSION['auth']['id'])));
                     $sql = "UPDATE users SET hash = '{$hash}' WHERE id = {$id}";
                     executeSql($sql);
-                    setcookie("hash", $hash, time() + 3600, "/");
+                    setcookie("hash", $hash, time() + LIFE_TIME_COOKIE, "/");
                 }
-                header("Location: /");
+                header("Location: " . $_SERVER['HTTP_REFERER']);
                 die();
             } else {
                 die("Не верный логин пароль");
@@ -40,7 +53,7 @@ function prepareVariables($page, $action, $id)
             setcookie("dietcalc", "", time()-1, "/");
             session_destroy();
             $_SESSION['auth'] = "";
-            header("Location: /");
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             die();
 
         case 'dietcalc':
@@ -48,6 +61,14 @@ function prepareVariables($page, $action, $id)
             $params['products'] = getDiet();
             $params['sumnvpdiet'] = calcDiet();
             $params['foods'] = getFoods();
+            break;
+
+        case 'category':
+            $params['category'] = getCategory();
+            break;
+
+        case 'categoryitem':
+            getCategoryfood($action);
             break;
 
 //        case 'catalog':

@@ -1,31 +1,34 @@
 <h1>Диетологический калькулятор</h1>
-<?php if(!empty($message)):?>
+<?php if (!empty($message)): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong><?=$message?></strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
+        <strong><?= $message ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert"
+                aria-label="Close"></button>
     </div>
-<?php endif;?>
+<?php endif; ?>
 
 
-
-<form action="/dietcalc/<?=$action?>" method="post">
+<form action="/dietcalc/<?= $action ?>" method="post">
     <div>
-        <input hidden type="text" name="idfoodtodiet" value="<?=$idfoodtodiet?>"><br>
+        <input hidden type="text" name="idfoodtodiet" value="<?= $idfoodtodiet ?>"><br>
         <label for="selectFood" class="form-label">Выбор продукта для добавления</label>
-        <select id="selectFood" class="form-select" aria-label="Default select example" name="foodid" <?php if ($action == "save"): ?>disabled<?php endif;?>>
+        <select id="selectFood" class="form-select" aria-label="Default select example" name="foodid"
+                <?php if ($action == "save"): ?>disabled<?php endif; ?>>
             <?php foreach ($foods as $food): ?>
-                <option <?php if ($food['id'] == $idfood): ?>selected<?php endif;?> value="<?= $food['id'] ?>"><?= ($food['special_foods'] == 1) ? "**" : "" ?><?= $food['name'] ?><?= ($food['special_foods'] == 1) ? "**" : "" ?></option>
+                <option <?php if ($food['id'] == $idfood): ?>selected<?php endif; ?>
+                        value="<?= $food['id'] ?>"><?= ($food['special_foods'] == 1) ? "**" : "" ?><?= $food['name'] ?><?= ($food['special_foods'] == 1) ? "**" : "" ?></option>
             <?php endforeach; ?>
         </select>
         <div class="input-group">
             <button type="button" class="col-2 btn btn-outline-danger" onclick="this.nextElementSibling.stepDown()">
                 <b>-</b></button>
             <input id="inputCountFood" class="col-8 form-control multiple size" type="number" name="foodcount" min="0"
-                   value="<?=$count?>">
+                   value="<?= $count ?>">
             <button type="button" class="col-2 btn btn-outline-success" onclick="this.previousElementSibling.stepUp()">
                 <b>+</b></button>
         </div>
-        <input id="submmitAddFood" type="submit" class="btn btn-primary mb-3 col-12" name="submit" value="<?=$button?>">
+        <input id="submmitAddFood" type="submit" class="btn btn-primary mb-3 col-12" name="submit"
+               value="<?= $button ?>">
     </div>
 </form>
 
@@ -50,7 +53,8 @@
             <td><?= $item['fat'] ?></td>
             <td><?= $item['carbohydrates'] ?></td>
             <td><?= $item['calories'] ?></td>
-            <td class="text-center"><a href="/dietcalc/edit/<?=$item['id']?>">[<b style="color: darkgoldenrod">E</b>]</a>&nbsp;&nbsp;<a href="/dietcalc/delete/<?=$item['id']?>">[<b
+            <td class="text-center"><a href="/dietcalc/edit/<?= $item['id'] ?>">[<b style="color: darkgoldenrod">E</b>]</a>&nbsp;&nbsp;<a
+                        href="/dietcalc/delete/<?= $item['id'] ?>">[<b
                             style="color: red">D</b>]</a></td>
         </tr>
     <?php endforeach; ?>
