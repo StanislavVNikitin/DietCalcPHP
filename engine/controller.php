@@ -12,7 +12,7 @@ function prepareVariables($page, $action, $id)
     } else {
         sessionCookeGuestStart();
     }
-
+    $params['calories'] = calcDiet()['sumcalories'];
     switch ($page) {
         case 'index':
             break;
@@ -20,7 +20,11 @@ function prepareVariables($page, $action, $id)
         case 'api':
 
             if ($action == 'addtodiet') {
-                echo json_encode();
+                $data = json_decode(file_get_contents('php://input'));
+                apiAddFoodToDiet($data->foodid, $data->foodcount);
+                //header("Content-type: application/json");
+                //echo json_encode($data);
+                //addFoodToDiet();
                 die();
             }
 
@@ -63,12 +67,12 @@ function prepareVariables($page, $action, $id)
             $params['foods'] = getFoods();
             break;
 
-        case 'category':
-            $params['category'] = getCategory();
+        case 'categories':
+            $params['category'] = getCategories();
             break;
 
-        case 'categoryitem':
-            getCategoryfood($action);
+        case 'category':
+            doCategoryAction($params, $action, $id);
             break;
 
 //        case 'catalog':

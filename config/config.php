@@ -14,6 +14,8 @@ include "../engine/auth.php";
 include "../engine/controller.php";
 include "../engine/functions.php";
 include "../engine/log.php";
+include "../engine/model/api.php";
+include "../engine/model/categories.php";
 include "../engine/model/category.php";
 include "../engine/model/diets.php";
 include "../engine/model/foods.php";

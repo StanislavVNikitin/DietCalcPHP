@@ -3,10 +3,10 @@
         <a class="nav-link active" aria-current="page" href="/">Главная</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/category/">Категории</a>
+        <a class="nav-link" href="/categories/">Категории</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/dietcalc/">Диетологический калькулятор</a>
+        <a class="nav-link" href="/dietcalc/">Диетологический калькулятор( <?=$calories?> ККалл)</a>
     </li>
 </ul>
 
