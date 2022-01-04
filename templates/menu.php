@@ -20,7 +20,9 @@
             <input class="form-check-input" type="checkbox" role="switch" name="save" id="flexSwitchCheckDefault">
             <label class="form-check-label" for="flexSwitchCheckDefault">Запомнить? &nbsp;</label>
         </div>
-        <button class="btn btn-outline-success btn-sm" type="submit">Вход</button>
+        <button class="btn btn-outline-success btn-sm" type="submit"> Вход </button>
+        <a class="btn btn-outline-primary  btn-sm" href="/auth"> Зарегистрироваться </a>
     </form>
+
 <?php endif; ?>
 

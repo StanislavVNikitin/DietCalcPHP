@@ -39,3 +39,27 @@ function auth($login, $pass)
     return false;
 
 }
+
+function registerUser()
+{
+    $login = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['username'])));
+    $email = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['email'])));
+    $password = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['password'])));
+    $passwordconfirm = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['password_confirm'])));
+    if ($login && $email && ($password === $passwordconfirm)){
+        $sql = "SELECT * FROM users WHERE login = '{$login}'";
+        $userNotFound = !getAssocResult($sql);
+        if ($userNotFound){
+            $passwordhash = password_hash($password, PASSWORD_DEFAULT);
+            $sqlinsertuser = "INSERT INTO users (login, password_hash) VALUES('{$login}', '{$passwordhash}');";
+            $userid = executeSqlAndReturnId($sqlinsertuser);
+            $sqlinsertprofile = "INSERT INTO profiles (user_id, disease_id, email ) VALUES('{$userid}','1', '{$email}');";
+            executeSql($sqlinsertprofile);
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}

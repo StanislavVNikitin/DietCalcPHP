@@ -36,3 +36,9 @@ function executeSql($sql)
 {
     return @mysqli_query(getDb(), $sql) or die(mysqli_error(getDb()));
 }
+
+function executeSqlAndReturnId($sql)
+{
+    @mysqli_query(getDb(), $sql) or die(mysqli_error(getDb()));
+    return mysqli_insert_id(getDb());
+}
