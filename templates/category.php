@@ -29,6 +29,9 @@
             var count = document.getElementById("inputCountFood-"+id).value;
             ( async () => {
                     const response = await fetch('/api/addtodiet/', {method: 'POST', headers: new Headers({'Content-Type': 'application/json'}), body: JSON.stringify({foodid: id, foodcount: count})});
+                    const answer = await response.json();
+                    document.getElementById('calories').innerText = answer.calories;
+                    document.getElementById('protein').innerText = answer.protein;
             })();
         })
     });

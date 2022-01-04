@@ -6,14 +6,14 @@
         <a class="nav-link" href="/categories/">Категории</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/dietcalc/">Диетологический калькулятор( <?=$calories?> ККалл)</a>
+        <a class="nav-link" href="/dietcalc/">Диетологический калькулятор( <span id="protein"><?=($protein)?$protein:0?> </span> бел. <span id="calories"><?=($calories)?$calories:0?></span> ККалл )</a>
     </li>
 </ul>
 
 <?php if ($auth): ?>
-    Добро пожаловать <?= $name ?>, <a href="/logout">[Выход]</a>
+    Добро пожаловать <?= $name ?>, <a href="/auth/logout">[Выход]</a>
 <?php else: ?>
-    <form class="d-flex" action="/login" method="post">
+    <form class="d-flex" action="/auth/login" method="post">
         <input class="form-control input-sm" type="text" name="login" placeholder="Логин">
         <input class="form-control input-sm" type="password" name="pass" placeholder="Пароль">
         <div class="form-check form-switch">

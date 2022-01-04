@@ -9,7 +9,7 @@ function getCategoryfood($id){
 }
 
 function getCategoryName($id){
-    var_dump(session_id());
+
     $id = (int)$id;
     $sql = "SELECT name FROM category WHERE  id = {$id}";
     return getAssocResult($sql)[0]['name'];

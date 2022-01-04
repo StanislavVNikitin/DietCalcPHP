@@ -173,7 +173,7 @@ function saveDiet()
     echo executeSql($sql);
 
 }
-
+/*
 function doDietAction(&$params, $action, $id)
 {
     $params['count'] = '10';
@@ -206,4 +206,4 @@ function doDietAction(&$params, $action, $id)
         if ($_GET['message'] == 'delete') $params['message'] = "Продукт удален из диеты!";
         if ($_GET['message'] == 'edit') $params['message'] = "Продукт отредактирован в диете!";
     }
-}
+}*/
