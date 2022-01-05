@@ -46,15 +46,15 @@ function registerUser()
     $email = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['email'])));
     $password = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['password'])));
     $passwordconfirm = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_POST['password_confirm'])));
-    if ($login && $email && ($password === $passwordconfirm)){
+    if ($login && $email && ($password === $passwordconfirm)) {
         $sql = "SELECT * FROM users WHERE login = '{$login}'";
         $userNotFound = !getAssocResult($sql);
-        if ($userNotFound){
+        if ($userNotFound) {
             $passwordhash = password_hash($password, PASSWORD_DEFAULT);
-            $sqlinsertuser = "INSERT INTO users (login, password_hash) VALUES('{$login}', '{$passwordhash}');";
-            $userid = executeSqlAndReturnId($sqlinsertuser);
-            $sqlinsertprofile = "INSERT INTO profiles (user_id, disease_id, email ) VALUES('{$userid}','1', '{$email}');";
-            executeSql($sqlinsertprofile);
+            $email_confirm_hash = uniqid(rand(), true);
+            $sqlinsertuser = "INSERT INTO users (login, password_hash, email, email_confirm_hash) 
+                                VALUES('{$login}', '{$passwordhash}', '{$email}', '{$email_confirm_hash}');";
+            executeSql($sqlinsertuser);
             return true;
         } else {
             return false;
@@ -62,4 +62,30 @@ function registerUser()
     } else {
         return false;
     }
+}
+
+function emailConfirm()
+{
+    if (isset($_GET['confirm_key']) && isset($_GET['confirm_email'])) {
+        $confirm_email = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_GET['confirm_email'])));
+        $confirm_key = mysqli_real_escape_string(getDb(), strip_tags(stripslashes($_GET['confirm_key'])));
+        $sql = "SELECT id, role_id, email, email_confirm_hash FROM users WHERE email_confirm_hash = '{$confirm_key}';";
+        $email_confirm_array = getAssocResult($sql);
+        if (!empty($email_confirm_array)) {
+            $email_confirm_array = $email_confirm_array[0];
+            if ($email_confirm_array['role_id'] == 5) {
+                $sql = "UPDATE users SET role_id=4, email_confirm_hash=NULL 
+                            WHERE id='{$email_confirm_array['id']}';";
+                return executeSql($sql);
+            } else {
+                die("Роль уже повышена");
+            }
+        } else {
+            die("Некорректные данные подтверждения!");
+        }
+    } else {
+        die("Некорректные  параметры подтверждения!");
+    }
+
+
 }

@@ -1,43 +1,29 @@
 <h1>Регистрация пользователя</h1>
 
 <form class="form-horizontal" action='/auth/register' method="POST">
-    <div class="control-group">
-      <!-- Username -->
-      <label class="control-label"  for="username">Имя пользователя</label>
-      <div class="controls">
-        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-      </div>
+
+    <div class="form-group">
+        <label class="control-label" for="username">Имя пользователя Логин</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Введите ваш логин">
     </div>
- 
-    <div class="control-group">
-      <!-- E-mail -->
-      <label class="control-label" for="email">E-mail</label>
-      <div class="controls">
-        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-      </div>
+
+    <div class="form-group">
+        <label class="control-label" for="email">E-mail</label>
+        <input class="form-control" type="text" id="email" name="email" placeholder="Введите ваш Email">
     </div>
- 
-    <div class="control-group">
-      <!-- Password-->
-      <label class="control-label" for="password">Пароль</label>
-      <div class="controls">
-        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-      </div>
+
+    <div class="form-group">
+        <label class="control-label" for="password">Пароль</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль">
     </div>
- 
-    <div class="control-group">
-      <!-- Password -->
-      <label class="control-label"  for="password_confirm">Подтвердите пароль</label>
-      <div class="controls">
-        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-      </div>
+
+    <div class="form-group">
+        <label class="control-label" for="password_confirm">Подтвердите пароль</label>
+        <input type="password" class="form-control" id="password_confirm" name="password_confirm"
+               placeholder="Введите пароль для подтверждения">
     </div>
- 
-    <div class="control-group">
-      <!-- Button -->
-      <div class="controls">
-        <button class="btn btn-success">Зарегистрироваться </button>
-      </div>
-    </div>
+    <br>
+    <button class="btn btn-outline-success">Зарегистрироваться</button>
+
 </form>
 
